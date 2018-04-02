@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!--meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" / -->
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap: ws: https://ssl.gstatic.com;style-src 'self' 'unsafe-inline' data: blob:;media-src *;img-src * 'self' data: content:;script-src * 'unsafe-inline' 'unsafe-eval' data: blob:;">
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/W3.css" />
+	<script type="text/javascript" src="js/datavlinders.js"></script>
+    <title>Vlinders in de Tuin</title>
+	<style>
+	.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: gray;
+    color: white;
+    text-align: center;
+}
+
+.tekst {
+font-family: georgia;
+font-size : 10pt;
+font-variant: normal;
+text-transform: none;
+
+}
+
+.3IMG {max-width:300px;}
+
+.splash {
+	background-color:gray;
+    background-image:linear-gradient(top, gray 0%, white 100%);
+    background-image:-webkit-linear-gradient(top, gray 0%, white 100%);
+    background-image:-ms-linear-gradient(top, gray 0%, white 100%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, gray),
+        color-stop(0.51, white)
+    );
+    background-attachment:fixed;
+	}
+	</style>
+
+
+<!-- ============================================================================================== -->
+	<script type="text/javascript">
+<!--
+
+//aantal fotos =
+
+var tal=44 + 1;
+var lastday = 28;
+var firstnight = 31;
+
+
+var s1=0,s2=0;s3=0;s4=0;
+
+var side=1;
+var cur=0;
+	function flip() {
+	//document.getElementById('hier').innerHTML=side
+	if (side==1) {plus="b"} else {plus=""}
+		for (i=1;i<tal ;i++ )
+		{
+			if (i<lastday) {
+				document.getElementById('img'+i).src="img/vlindersphgroot"+plus+i+".jpg"; }
+			
+		}
+		document.getElementById('icon').src="img/dagpauw"+plus+".png"
+
+	if (side==1) {side=0} else {side=1}
+	}
+
+
+	
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+	s4=1;
+	
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+	s4=0;
+}
+
+function previous() {
+	a=cur-1
+	if (a==firstnight-1) {a=lastday-1}
+	if (a>0) 	{show(a)}
+}
+function next() {
+	a=cur+1
+	if (a==lastday) {a=firstnight}
+	if (a<(tal+1)) 	{show(a)}
+}
+
+function show(a) {
+			cur=a;
+			if (side==1) {plus=""} else {plus="b"}
+			if (a>lastday) {document.getElementById('foto').src="img/vlinderstbgroot"+a+".jpg";
+			document.getElementById('flip').style.visibility='hidden'}
+			else {		document.getElementById('foto').src="img/vlindersphgroot"+plus+a+".jpg";
+			document.getElementById('flip').style.visibility='visible'}
+			document.getElementById('naam').innerHTML=vlinders[a].naam;
+			document.getElementById('extranaam').innerHTML=vlinders[a].extranaam;
+			document.getElementById('familie').innerHTML=vlinders[a].familie;
+			document.getElementById('tekst').innerHTML=vlinders[a].tekst;
+
+			document.getElementById('copy').innerHTML="";
+			x=vlinders[a].copyright1;
+			if (plus=="b") {x=vlinders[a].copyright2;}
+
+			if (x) {document.getElementById('copy').innerHTML="foto &copy; "+x;}
+
+
+			document.getElementById('extratekst').innerHTML=vlinders[a].extratekst;
+			document.getElementById('next').setAttribute('style', 'color:black !important');
+			document.getElementById('previous').setAttribute('style', 'color:black !important');
+			if (a==tal) {
+				document.getElementById('next').setAttribute('style', 'color:gray !important');
+			}
+			if (a==1) {
+				document.getElementById('previous').setAttribute('style', 'color:gray !important');
+			}
+
+			document.getElementById('id01').style.display='block'
+			document.getElementById('knop').focus();
+			s1=1;
+}
+
+function flipme() {
+			a=cur
+			flip();
+			if (side==1) {plus=""} else {plus="b"}
+			document.getElementById('foto').src="img/vlindersphgroot"+plus+a+".jpg";
+			
+			document.getElementById('copy').innerHTML="";
+			x=vlinders[a].copyright1;
+			if (plus=="b") {x=vlinders[a].copyright2;}
+			if (x) {document.getElementById('copy').innerHTML="foto &copy; "+x;}
+			//document.getElementById('knop').focus();
+}
+function splashme() {
+
+
+
+
+	x=document.getElementById('splash');
+	// Code for Chrome, Safari and Opera
+	//x.addEventListener("webkitAnimationStart", myStartFunction);
+	//x.addEventListener("webkitAnimationEnd", myEndFunction);
+
+// Standard syntax
+	//x.addEventListener("animationstart", myStartFunction);
+	//x.addEventListener("animationend", myEndFunction);
+	x.style.display='block';
+	s5=1;
+	window.setTimeout(closeSplash, 5000);
+	//
+
+//document.getElementById('hier').innerHTML=document.getElementById('splash').getAttribute("display");
+
+
+	//
+}
+
+function myEndFunction() {
+document.getElementById('body').style.opacity=1;
+}
+function myStartFunction() {
+document.getElementById('body').style.opacity=0.85;
+}
+
+function openme(a) {
+	if (a==1) {document.getElementById('id01').style.display='block';s1=1;}
+	if (a==2) {document.getElementById('id02').style.display='block';s2=1;}
+	if (a==3) {document.getElementById('id03').style.display='block';s3=1;}
+	if (a==5) {document.getElementById('splash').style.display='block';s5=1;}
+	
+}
+function closeme(a) {
+	if (a==1) {document.getElementById('id01').style.display='none';s1=0;}
+	if (a==2) {document.getElementById('id02').style.display='none';s2=0;}
+	if (a==3) {document.getElementById('id03').style.display='none';s3=0;}
+	if (a==5) {document.getElementById('splash').style.display='none';s5=0;}
+	
+}
+function closeSplash() {
+	//alert('ja hoor');
+	document.getElementById('splash').style.display='none';
+	s5=0;
+}
+//-->
+</script>
+</head>
+
+
+<body id=body class="w3-light-grey w3-content" style="max-width:1600px;" onload=splashme()>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" style='text-decoration:none' class="w34-hide-large w3-right w3-large w3-padding w3-hover-grey" title="close menu"><img src="img/kruis.png" width="35" height="35" border="0" alt="">
+      
+    </a>
+    <img src="img/dagpauw.png" style="width:20%;" class="w3-round"><br><br>
+    <h4><b>Stichting Stippen.nl</b></h4>
+    <a href=# class="w3-text-teal w3-bar-item w3-button w3-padding" onclick="openme(3);w3_close()" >(c) Alle foto's<br> zijn copyrighted </a>
+	<a href="#about" onclick="openme(2);w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">Over de App</a> 
+  </div>
+
+<div style='font-size:9pt!important;font-family:verdana!important;padding:20px'>
+In deze App vindt u, naast de meest algemene dagvlinders die u in uw tuin kunt vinden, ook een paar van de veel voorkomende (dagactieve) nachtvlinders.<br><br>
+Met de aanschaf van deze App helpt u ons om nog meer te doen voor het populariseren van onze mooie natuur.<br><br>
+Hartelijk dank!
+</div>
+
+<br><i><div id=version style='font-size:8pt;padding:10px;color:gray'></div></i>
+
+  <!-- div class="w3-bar-block">
+    <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">Vlinders in de Tuin</a> 
+    
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">CONTACT</a>
+  </div -->
+
+
+  <!-- div class="w3-panel w3-large">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div -->
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w34-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-left:auto;margin-right:auto">
+
+  <!-- Header -->
+  <header id="portfolio">
+    <a href="#"><img id=icon src="img/512x.png" style="height:20%;max-height:60px;padding-right:10px" class="w3-circle w3-right sw3-margin w34-hide-large sw3-hover-opacity" style="box-shadow: 2px 2px 4px #000000;" onclick=flip()></a>
+    <span class="w3-button w34-hide-large w3-xxlarge " onclick="w3_open()"> &equiv; <b id=hier style="font-size:12pt;color:#909090;font-family:'Arial Black', Gadget, serif">&nbsp;&nbsp;&nbsp;Vlinders in de Tuin Extra</b></span>
+    <div class="w3-container">
+    <b id=hier1></b>
+    <!-- div class="w3-section w3-bottombar w3-padding-16">
+      <span class="w3-margin-right">Filter:</span> 
+      <button class="w3-button w3-black">ALL</button>
+      <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Design</button>
+      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-photo w3-margin-right"></i>Photos</button>
+      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Art</button>
+    </div -->
+    </div>
+  </header>
+  
+  <!-- First Photo Grid-->
+  <div class="w3-row-padding sw3-container " >
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot1.jpg" id=img1 onclick=show(1) style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot2.jpg" id=img2 onclick=show(2) style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot3.jpg" id=img3 onclick=show(3) style="width:100%;" >
+     
+    </div>
+  </div>
+  <div class="w3-row-padding">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot4.jpg" onclick=show(4) id=img4 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot5.jpg" onclick=show(5) id=img5 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot6.jpg" onclick=show(6) id=img6 style="width:100%;" >
+     
+    </div>
+  </div>
+  <div class="w3-row-padding">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot7.jpg"  onclick=show(7) id=img7 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot8.jpg"  onclick=show(8) id=img8 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot9.jpg"  onclick=show(9) id=img9 style="width:100%;" >
+     
+    </div>
+  </div>
+  <!--   -->
+  <div class="w3-row-padding sw3-container ">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot10.jpg"  onclick=show(10) id=img10 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot11.jpg"  onclick=show(11) id=img11 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot12.jpg"  onclick=show(12) id=img12 style="width:100%;" >
+     
+    </div>
+  </div>
+  <div class="w3-row-padding">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot13.jpg"  onclick=show(13) id=img13 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot14.jpg"  onclick=show(14)  id=img14 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot15.jpg"  onclick=show(15) id=img15 style="width:100%;" >
+     
+    </div>
+  </div>
+  <div class="w3-row-padding">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot16.jpg"  onclick=show(16)  id=img16 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot17.jpg"  onclick=show(17)  id=img17 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot18.jpg"  onclick=show(18) id=img18 style="width:100%;" >
+     
+    </div>
+  </div>
+ <!--   -->
+  <div class="w3-row-padding sw3-container ">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot19.jpg"  onclick=show(19) id=img19 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot20.jpg" onclick=show(20)  id=img20 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot21.jpg" onclick=show(21)  id=img21 style="width:100%;" >
+     
+    </div>
+  </div>
+  <div class="w3-row-padding">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot22.jpg"  onclick=show(22) id=img22 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot23.jpg" onclick=show(23)  id=img23 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot24.jpg" onclick=show(24)  id=img24 style="width:100%;" >
+     
+    </div>
+  </div>
+  <div class="w3-row-padding">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot25.jpg"  onclick=show(25) id=img25 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot26.jpg"  onclick=show(26) id=img26 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot27.jpg"  onclick=show(27) id=img27 style="width:100%;" >
+     
+    </div>
+  </div>
+
+
+  
+
+  
+  <div class="w3-row-padding">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot31.jpg"  onclick=show(31) id=img31 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot32.jpg"  onclick=show(32) id=img32 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot33.jpg"  onclick=show(33) id=img33 style="width:100%;" >
+     
+    </div>
+  </div>
+  <div class="w3-row-padding">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot34.jpg"  onclick=show(34) id=img34 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot35.jpg"  onclick=show(35) id=img35 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot36.jpg"  onclick=show(36) id=img36 style="width:100%;" >
+     
+    </div>
+  </div>
+  <div class="w3-row-padding">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot37.jpg"  onclick=show(37) id=img37 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot38.jpg"  onclick=show(38) id=img38 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot39.jpg"  onclick=show(39) id=img39 style="width:100%;" >
+     
+    </div>
+  </div>
+
+  <div class="w3-row-padding">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot40.jpg"  onclick=show(40) id=img40 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot41.jpg"  onclick=show(41) id=img41 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot42.jpg"  onclick=show(42) id=img42 style="width:100%;" >
+     
+    </div>
+  </div>
+
+  <div class="w3-row-padding">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot43.jpg"  onclick=show(43) id=img37 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot44.jpg"  onclick=show(44) id=img44 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlinderstbgroot45.jpg"  onclick=show(45) id=img45 style="width:100%;" >
+     
+    </div>
+  </div>
+ <!--   
+  <div class="w3-row-padding sw3-container ">
+    <div style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot28.jpg"  onclick=show(28) id=img28 style='width:100%'>
+      
+    </div>
+    <div  style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot29.jpg"  onclick=show(29) id=img29 style='width:100%'>
+      
+    </div>
+    <div class="w3-cell" style="float:left;width:32%;padding:1%">
+      <img src="img/vlindersphgroot30.jpg"  onclick=show(30) id=img30 style="width:100%;" >
+     
+    </div>
+  </div>
+  -->
+  
+    
+  </div>
+
+    <div class="happ">
+	
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
+		<div><img></div>
+    </div>
+	<div class=footer style='opacity: 0.9;border-width:4px 0 0 0;border-style:solid;border-color: #767676'>
+	<button onclick=flip() class="w3-btn w3-round-xlarge w3-border w3-white ">Flip</button>
+      
+	</div>
+
+<!-- Trigger/Open the Modal -->
+
+
+<!-- The Modal -->
+<div id="id01" class="w3-modal w3-animate-zoom" style='padding-top:10px'>
+  <div class="w3-modal-content">
+    <div class="w3-container" 
+      class="w3-button w3-display-topright"><br>
+      <img id=foto style='width:100%' >
+	  <div onclick="closeme(1)"  style='position:absolute;right:16px;top:20px;font-size:28pt;font-weight:500;color:white;text-shadow:2px 2px 8px #FFFFFF;' ><a  href=# id=knop style='text-decoration:none'><img src="img/kruis.png" width="45" height="45" border="0" alt="" ></a></div>
+	  <div class=tekst>
+	  <b><span id=naam></span></b>&nbsp;&nbsp;&nbsp;
+	  <i><span id=extranaam></span></i>&nbsp;&nbsp;
+	  <span style='font-variant:small-caps' id=familie></span>
+		<p id=tekst></p>
+		<p id=extratekst></p>
+		<i><small><p id=copy></p></small></i>
+		</div>
+		<button onclick=previous() 
+		class="w3-btn w3-round-xlarge w3-border w3-white" id=previous>Vorige</button>&nbsp;&nbsp;&nbsp;
+		<button onclick=flipme() class="w3-btn w3-round-xlarge w3-border w3-white " id=flip>Flip</button>
+     &nbsp;&nbsp;&nbsp;<button onclick=next() 
+class="w3-btn w3-round-xlarge w3-border w3-white" id=next>Volgende</button>  <br><br>
+    </div>
+  </div>
+</div>
+
+<!-- The Modal II -->
+<div id="id02" class="w3-modal" style='padding-top:10px'>
+  <div class="w3-modal-content">
+    <div class="w3-container" 
+      class="w3-button w3-display-topright"><br>
+      <img id=foto style='max-width:100%' >
+	  <div onclick="closeme(2)"  style='position:absolute;right:10px;top:20px;font-size:28pt;font-weight:500;color:white;text-shadow:2px 2px 8px #FFFFFF;'><img src="img/kruis.png" width="45" height="45" border="0" alt=""></div>
+	  <div class=tekst style='font-size:12pt'><img src="img/dagpauw.png" style='float:right;padding:20px'>
+	  Vlinders in de Tuin biedt foto's van de gewone vlinders die u om u heen kunt vinden.
+	  Er zijn geen zeldzame soorten opgenomen.<br><br>
+	  Deze App is gemaakt door stichting Stippen.nl, die u misschien kent van 
+	  <a onclick="window.open('http://www.stippen.nl');" style='text-decoration:underline'> Stippen.nl, lieveheersbeestjes van Nederland en Belgi&euml;</a><br><br>
+	  Veel plezier gewenst met deze App, en we hopen dat dit het begin is van een prettige  natuurstudie!<br>
+	    <br><br>
+		</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- The Modal III -->
+<div id="id03" class="w3-modal" style='padding-top:10px'>
+  <div class="w3-modal-content">
+    <div class="w3-container" 
+      class="w3-button w3-display-topright"><br>
+      <img id=foto style='max-width:100%' >
+	  <div onclick="closeme(3)"  style='position:absolute;right:10px;top:20px;font-size:28pt;font-weight:500;color:white;text-shadow:2px 2px 8px #FFFFFF;'><img src="img/kruis.png" width="45" height="45" border="0" alt=""></div>
+	  <div class=tekst style='font-size:12pt'><img src="img/dagpauwb.png" style='float:right;padding:20px'>
+	  Foto's (c) Patricia Klarenbeek, Marja van der Wel, Gert Veurink, Wim Goeree, Tim Raats, Bureau Stadsnatuur Rotterdam, Jack Windig, Kees van der Krieke.<br><br>
+	  <small>Met dank voor alle bijdragen.<br></small>
+
+	    <br><br>
+		</div>
+    </div>
+  </div>
+</div>
+
+<!-- Splash -->
+<div id="splash" class="w3-modal  w3-animate-zoomout splash" style='padding-top:10px;animation-fill-mode: forwards;animation-delay: 3s;' onclick="closeme(5)"  >
+  <div class="w3-modal-content">
+    <div class="w3-container splash" 
+      class="w3-button w3-display-topright"><br>
+      <img id=foto style='width:100%;max-width:400px' src="img/vlinder.jpg">
+	  
+	  <div class=tekst style='font-size:12pt;color:gray'><img src="img/dagpauwb.png" style='float:right;padding:20px'>
+	  <br><br>Foto's (c) Patricia Klarenbeek, Marja van der Wel, Gert Veurink, Wim Goeree, Tim Raats, Bureau Stadsnatuur Rotterdam, Jack Windig, Kees van der Krieke.<br><br>
+	  <small>Met dank voor alle bijdragen.<br></small>
+
+	    <br><br>
+		</div>
+    </div>
+  </div>
+</div>
+<!--
+Foto's (c) Patricia Klarenbeek, Marja van der Wel, Gert Veurink, Wim Goeree, Tim Raats, Bureau Stadsnatuur Rotterdam, Jack Windig, Kees van der Krieke
+
+-->
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+	
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
+
+</html>
