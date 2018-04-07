@@ -37,8 +37,11 @@ var app = {
         app.receivedEvent('deviceready');
 		window.open = cordova.InAppBrowser.open;
 		//navigator.splashscreen.show();
-		document.getElementById('version').innerHTML= navigator.appName + " " + navigator.appVersion+ " " + navigator.appCodeName
-		//window.setTimeout(closeme(5), 900000);
+		ver=AppVersion.version; // e.g. "1.2.3" 
+		document.getElementById('version').innerHTML= navigator.appName + " : " + navigator.appVersion+ " : " + navigator.appCodeName;
+
+			//alert(ver);
+
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

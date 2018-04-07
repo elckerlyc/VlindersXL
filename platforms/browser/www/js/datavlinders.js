@@ -212,7 +212,7 @@ tekst : "Dit prachtig vlindertje met kanten franje is de Geoogde Bandspanner" , 
 vlinders[ 33] = obj; 
 
 obj = { naam : "Klaverspanner" , extranaam : "Chiasmia clathrata", 
-familie : "spanners" , copyright1 : "Jack Windig" , copyright2 : "", 
+familie : "spanners" , copyright1 : "Jack Windig" , copyright2 : "Jack Windig", 
 tekst : "Nog een spanner (zie vorige soort)" , extratekst : "Naast deze twee soorten zijn er nog een behoorlijk aantal waaronder de gewone heidespanner niet mag ontbreken. Die laatste heeft veel minder witte plekken en lijkt daardoor een stuk donkerder." 
 }; 
 vlinders[ 34] = obj; 
@@ -230,13 +230,13 @@ tekst : "Ook wel eens spinselmot genoemd." , extratekst : "Het gaat hier om een 
 vlinders[ 36] = obj; 
 
 obj = { naam : "Kroosvlindertje" , extranaam : "Cataclysta lemnata", 
-familie : "grasmotten" , copyright1 : "Tim Raats" , copyright2 : "", 
+familie : "grasmotten" , copyright1 : "Tim Raats" , copyright2 : "Tim Raats", 
 tekst : "Klein wit vlindertje." , extratekst : "Als je zomers langs een sloot- of vijverkant zit, dan zie je vaak een of meer kleine vlindertjes langs de waterkant patrouilleren. De vrouwtjes zijn bruin en de rupsen leven in het water in van plantendelen gemaakte buisjes." 
 }; 
 vlinders[ 37] = obj; 
 
 obj = { naam : "Kolibrivlinder" , extranaam : "Macroglossum stellatarum", 
-familie : "pijlstaarten" , copyright1 : "Patricia Klarenbeek" , copyright2 : "", 
+familie : "pijlstaarten" , copyright1 : "Patricia Klarenbeek" , copyright2 : "Patricia Klarenbeek", 
 tekst : "Je denkt: wat zie ik? Een kolibri?" , extratekst : "Kolibries komen in Nedrland en Belgie niet voor, dus dan zal het wel dit heel bijzondere vlindertje zijn. Staat als zijn naamgenoot stil in de lucht om nectar uit bloemen te zuigen." 
 }; 
 vlinders[ 38] = obj; 
@@ -260,19 +260,19 @@ tekst : "Schichtig vlindertje met lange rode strepen." , extratekst : "De vinder
 vlinders[ 41] = obj; 
 
 obj = { naam : "Sint-Jansvlinder" , extranaam : "Zygaena filipendulae", 
-familie : "bloeddrupjes" , copyright1 : "Patricia Klarenbeek" , copyright2 : "", 
+familie : "bloeddrupjes" , copyright1 : "Patricia Klarenbeek" , copyright2 : "Patricia Klarenbeek", 
 tekst : "Lijkt op de vorige soort, maar zonder de lange rode strepen" , extratekst : " Komt voor in bloemrijke graslanden, wegbermen, kalkgraslanden, weilanden, brede bospaden en duinen." 
 }; 
 vlinders[ 42] = obj; 
 
 obj = { naam : "Geishamotje" , extranaam : "Olethreutus arcuella", 
-familie : "bladroller" , copyright1 : "Jack Windig" , copyright2 : "", 
+familie : "bladroller" , copyright1 : "Jack Windig" , copyright2 : "Jack Windig", 
 tekst : "Het bontst gekleurde motje van ons land." , extratekst : "Kleur voorvleugels oranje met een patroon van blauwe, zilverachtige, zwarte en gele tekeningen." 
 }; 
 vlinders[ 43] = obj; 
 
 obj = { naam : "Bruine-Snuituil" , extranaam : "Hypena proboscidalis", 
-familie : " spinneruilen" , copyright1 : "fotograaf" , copyright2 : "", 
+familie : " spinneruilen" , copyright1 : "" , copyright2 : "", 
 tekst : "Bruine driehoek met uitstekende 'neus'" , extratekst : "Overdag vooral stilzittende vlinder die algemeen voorkomt vooral in vochtige, brandnetelrijke gebieden." 
 }; 
 vlinders[ 44] = obj; 

@@ -63,6 +63,12 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "nl.stippen.vlinders"
+        },
+        "nl.madebymark.share": {
+            "PACKAGE_NAME": "nl.stippen.vlindersXL"
+        },
+        "cordova-plugin-appversion": {
+            "PACKAGE_NAME": "nl.stippen.vlindersXL"
         }
     },
     "dependent_plugins": {

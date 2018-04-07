@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="nl.stippen.vlindersXL" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="nl.stippen.vlindersXL" version="1.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <feature name="Camera">
         <param name="browser-package" value="Camera" />
     </feature>
@@ -14,6 +14,7 @@
         stichting Stippen.nl
     </author>
     <content src="index.html" />
+    <gap:plugin name="nl.x-services.plugins.socialsharing" version="4.3.8" />
     <icon height="512" src="www/res/icon/512x.png" width="512" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

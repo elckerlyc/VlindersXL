@@ -277,3 +277,10 @@ tekst : "Bruine driehoek met uitstekende 'neus'" , extratekst : "Overdag vooral 
 }; 
 vlinders[ 44] = obj; 
 
+obj = { naam : "Ontwikkeling" , extranaam : "" ,
+			familie : "Uitgelicht" , copyright1 : "" , copright2 : "" ,
+			tekst : "Vlinders leggen eitjes, uit eitjes komen rupsen, rupsen vormen poppen, uit poppen komen vlinders." ,
+			extratekst :  "Per soort verschilt het of er &eacute;&eacute;n of meer generaties in een jaar voorkomen.<br />Sommige soorten overwinteren als pop, andere als eitje, rups of volwassen vlinders.<br /><br />Sommige soorten blijven hier gedurende de winter, andere trekken naar Zuid-Europa of zelfs naar Afrika! En dat voor zulke kleine kwetsbare insecten!" 
+			}; 
+vlinders[45] = obj; 
+
